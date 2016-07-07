@@ -1,0 +1,58 @@
+.wrapper {
+    width: 960px;
+    margin: 0 auto;
+}
+
+.pageheader h1 {
+    color: black;
+    padding: 20px;
+    text-align: center;
+    font-size: 60px;
+}
+
+
+
+label {
+    color: black;
+}
+
+td {
+    font-size: 20px;
+}
+
+td:nth-child(5) > a {
+    text-decoration: none;
+    color: green;
+    vertical-align: center;
+}
+
+td:last-child > a {
+    text-decoration: none;
+    color: red;
+    vertical-align: center;
+}
+
+
+table thead th {
+    text-align: center;
+    font-size: 30px;
+}
+
+table tbody tr td {
+    text-align: center;
+}
+
+.btn {
+    float:right;
+    margin-top: 25px;
+}
+
+.supplierform .btn{
+    margin-top: 25px;
+
+}
+
+.item-image img {
+    width: 100px;
+    height: auto;
+}
