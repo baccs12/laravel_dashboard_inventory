@@ -21,11 +21,11 @@ class StockUpdateController extends Controller
      */
     public function index()
     {
-        $items = DB::table('item')->paginate(7);
+        $items = DB::table('item')->paginate(5);
         return view('stockUpdate.index')->with('items', $items);
     }
 
-    /**
+    /*
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -43,7 +43,10 @@ class StockUpdateController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $item->create($request->all());
+        // save to database
+
+        return redirect('/stockUpdate');
     }
 
     /**
@@ -65,11 +68,19 @@ class StockUpdateController extends Controller
      */
     public function edit($id)
     {
+
+
         $item = Item::find($id);
+
+        // Item::where('id', $id)->increment('item_onhand', 1000);
 
         return view('stockUpdate.edit', [
             'item' => $item
         ]);
+
+
+
+        return redirect('/stockUpdate');
     }
 
     /**
@@ -81,7 +92,12 @@ class StockUpdateController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item = Item::find($id);
+        $remaining = $item->item_onhand;
+        $remaining += + $request->item_onhand;
+        $item->item_onhand = $remaining;
+        $item->save();
+        return redirect('/stockUpdate');
     }
 
     /**

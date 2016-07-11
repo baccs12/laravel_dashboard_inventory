@@ -21,7 +21,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = DB::table('supplier')->paginate(7);
+        $suppliers = DB::table('supplier')->paginate(5);
         return view('suppliers.index')->with('suppliers', $suppliers);
     }
 

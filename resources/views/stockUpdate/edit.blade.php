@@ -8,8 +8,10 @@
 
 <div class="glass">
     <div class="stockform">
-        <form method='POST' action="{{ action('ItemController@update', $item->id) }}">
-        <input type="hidden" name="id" value="{{ $item->id }}">
+
+        <form method='POST' action="{{ route('stockUpdate.update', $item->id) }}">
+        <input type="hidden" name="_method" value="PUT">
+
 
             <label for="itemname">Item Name: </label>
             <div class="form-group"><label>{{ $item->item_name }}</label><br><br>
