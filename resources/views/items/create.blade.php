@@ -15,7 +15,13 @@
             <label for="type">Type: </label>
             <div class="form-group"><input type='text' class="form-control" id='type' name='type' required='required'></div>
 
-
+            <label for="supplier_name">Supplier: </label>
+            <select name="supplier_name" class="form-control" id="supplier_name">
+            <option></option>
+            @foreach($supplier as $suppliers)
+            <option>{{ $suppliers->supplier_name }}</option>
+            @endforeach
+            </select>
 
 
             <label for="item-image">Image: </label>

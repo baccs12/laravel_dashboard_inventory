@@ -17,8 +17,13 @@
                 @foreach($suppliers as $supplier)
                 <tr>
                     <td>{{ $supplier->supplier_name }}</td>
-                    <td><a class="action" href="/supplier/{{ $supplier->id }}/edit">Edit</a></td>
-                    <td><a class="action" href="/supplier/{{ $supplier->id }}/delete">Delete</a></td>
+                    <td><a class="action btn btn-primary" href="/supplier/{{ $supplier->id }}/edit">Edit</a></td>
+                    <td>
+                        <form action="{{ route('supplier.destroy', $supplier->id) }}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type='submit' class="btn btn-primary form-control" value='Delete Supplier'>
+                        </form>
+                    </td>
 
                 </tr>
                 @endforeach

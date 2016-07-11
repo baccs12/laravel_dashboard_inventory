@@ -8,11 +8,11 @@ use App\Http\Requests;
 
 use DB;
 
-use App\Supplier;
+use App\Item;
 
 use Illuminate\Pagination\LengthAwarePagintor;
 
-class SupplierController extends Controller
+class StockUpdateController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -21,8 +21,8 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $suppliers = DB::table('supplier')->paginate(7);
-        return view('suppliers.index')->with('suppliers', $suppliers);
+        $items = DB::table('item')->paginate(7);
+        return view('stockUpdate.index')->with('items', $items);
     }
 
     /**
@@ -32,7 +32,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        return view('suppliers.create');
+        //
     }
 
     /**
@@ -41,12 +41,9 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Supplier $supplier)
+    public function store(Request $request)
     {
-         $supplier->create($request->all());
-        // save to database
-
-        return redirect('/supplier');
+        //
     }
 
     /**
@@ -68,10 +65,10 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        $supplier = Supplier::find($id);
+        $item = Item::find($id);
 
-        return view('suppliers.edit', [
-            'supplier' => $supplier
+        return view('stockUpdate.edit', [
+            'item' => $item
         ]);
     }
 
@@ -84,22 +81,7 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $post = $request->all();
-        // $suppliers = array(
-        //         'supplier_name' => $post['supplier_name']
-        //     );
-        // $data = DB::table('supplier')->where('id', $post['id'])->update($suppliers);
-        // return redirect('/supplier');
-
-
-        $supplier = Supplier::find($id);
-
-
-        $supplier->update($request->all());
-
-        return redirect('/supplier');
-
-
+        //
     }
 
     /**
@@ -110,16 +92,6 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-
-        $supplier = Supplier::find($id);
-
-
-        $supplier->delete();
-
-        return redirect('/supplier');
-
-
-        // DB::table('supplier')->where('id', $id)->delete();
-        // return redirect('/supplier');
+        //
     }
 }

@@ -15,6 +15,14 @@ class Item extends Eloquent
         'type',
         'item_onhand',
         'supplier_name',
-        'item_image'
+        'item_image',
+        'supplier_name'
     ];
+
+    public function supplier()
+    {
+        return $this->belongsTo(Supplier::class);
+    }
+
+
 }

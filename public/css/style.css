@@ -49,10 +49,14 @@ table tbody tr td {
 
 .supplierform .btn{
     margin-top: 25px;
-
 }
 
 .item-image img {
     width: 100px;
     height: auto;
 }
+
+.supplierform .row .col-sm-6 .btn{
+    float: right;
+}
+

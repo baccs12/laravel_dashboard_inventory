@@ -10,6 +10,8 @@ use DB;
 
 use App\Item;
 
+use App\Supplier;
+
 use Illuminate\Pagination\LengthAwarePagintor;
 
 class ItemController extends Controller
@@ -22,11 +24,13 @@ class ItemController extends Controller
     public function index()
     {
         $items = DB::table('item')->paginate(5);
-        return view('items.index')->with('items', $items);
+           return view('items.index', [
+            'suppliers' => Supplier::all(),
+            'items' => Item::all()
+        ])->with('items', $items);
         // return view('items.index', [
         //     'items' => Item::all()
         // ]);
-
     }
 
     /**
@@ -34,9 +38,12 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function create()
     {
-        return view('items.create');
+        return view('items.create', [
+            'supplier' => Supplier::all()
+        ]);
     }
 
     /**
@@ -88,6 +95,7 @@ class ItemController extends Controller
         return view('items.edit', [
             'item' => $item
         ]);
+
         // $item = DB::table('item')->where('id', $id)->first();
         // return view('items.edit')->with('item', $item);
     }
@@ -99,25 +107,30 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
 
-        // $item = Item::find($id);
+        $item = Item::find($id);
 
+        $data = $request->all();
 
-        // $item->update($request->all());
+        if (!$data['item_image']) {
+            unset($data['item_image']);
+        }
 
-        // return redirect('/items');
+        $item->update($data);
 
-        $post = $request->all();
-        $items = array(
-                'item_name' => $post['item_name'],
-                'type' => $post['type'],
-                'item_onhand' => $post['item_onhand'],
-                'supplier_name' => $post['supplier_name']
-            );
-        $data = DB::table('item')->where('id', $post['id'])->update($items);
         return redirect('/item');
+
+        // $post = $request->all();
+        // $items = array(
+        //         'item_name' => $post['item_name'],
+        //         'type' => $post['type'],
+        //         'item_onhand' => $post['item_onhand'],
+        //         'supplier_name' => $post['supplier_name']
+        //     );
+        // $data = DB::table('item')->where('id', $post['id'])->update($items);
+        // return redirect('/item');
     }
 
     /**
@@ -128,7 +141,13 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('item')->where('id', $id)->delete();
+        // DB::table('item')->where('id', $id)->delete();
+        // return redirect('/item');
+
+        $item = Item::find($id);
+
+        $item->delete();
+
         return redirect('/item');
     }
 }

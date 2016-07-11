@@ -26,8 +26,13 @@
                     <td>{{ $item->supplier_name }}</td>
                     <td>{{ $item->item_onhand }}</td>
                     <td class="item-image"><img src="{{ asset('pics/' . $item->item_image) }}"></td>
-                    <td><a class="action" href="/item/{{ $item->id }}/edit">Edit Item</a></td>
-                    <td><a class="action" href="/item/{{ $item->id }}/delete">Delete Item</a></td>
+                    <td><a class="action btn btn-primary" href="/item/{{ $item->id }}/edit">Edit</a></td>
+                    <td>
+                        <form action="{{ route('item.destroy', $item->id) }}" method="POST">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <input type='submit' class="btn btn-primary form-control" value='Delete Item'>
+                        </form>
+                    </td>
 
                 </tr>
                 @endforeach

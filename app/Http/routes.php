@@ -27,3 +27,4 @@ Route::get('home', function () {
 
 Route::resource('item', 'ItemController');
 Route::resource('supplier', 'SupplierController');
+Route::resource('stockUpdate', 'StockUpdateController');

@@ -55,7 +55,7 @@
         </li>
 
         <li class="treeview">
-          <a href="#">
+          <a href="/stockUpdate">
             <i class="fa fa-pie-chart"></i>
             <span>Update Stocks</span>
           </a>
